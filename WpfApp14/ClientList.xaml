@@ -13,15 +13,18 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Column="1">
-            <StackPanel DataContext="{Binding SelectedClientCopy}">
+        <DockPanel Margin="5 3 0 5">
+            <TextBlock Text="Список клиентов" DockPanel.Dock="Top"/>
+            <ListBox Grid.Column="0" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" Background="LightGray" Padding="2" Margin="1"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <DockPanel Grid.Column="1" LastChildFill="False" Margin="5 3 5 5">
+            <StackPanel DataContext="{Binding SelectedClientCopy}" DockPanel.Dock="Top">
                 <TextBlock Text="Фамилия"/>
                 <TextBox Text="{Binding LastName}"/>
                 <TextBlock Text="Имя"/>
@@ -33,13 +36,15 @@
                 <TextBlock Text="Марка авто"/>
                 <TextBox Text="{Binding CarBrand}"/>    
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Создать" Command="{Binding CreateClient}"/>
-                <Button Content="Сохранить" Command="{Binding SaveClient}"/>
-                <Button Content="Удалить" Command="{Binding RemoveClient}"/>
-                <Button Content="История посещений" Command="{Binding VisitLog}"/>
-                <Button Content="Отметиться" Command="{Binding MarkDate}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                <Button Content="История посещений" Command="{Binding VisitLog}" Padding="5" Margin="0"/>
+                <Button Content="Отметиться" Command="{Binding MarkDate}" Padding="5" Margin="5 0 0 0"/>
             </StackPanel>
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top">
+                <Button Content="Создать" Command="{Binding CreateClient}" Padding="5" Margin="0 5 5 0"/>
+                <Button Content="Сохранить" Command="{Binding SaveClient}" Padding="5" Margin="0 5 5 0"/>
+                <Button Content="Удалить" Command="{Binding RemoveClient}" Padding="5" Margin="0 5 0 0"/>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </Page>

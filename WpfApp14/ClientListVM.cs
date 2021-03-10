@@ -1,4 +1,5 @@
 ﻿using Mvvm1125;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -20,7 +21,7 @@ namespace WpfApp14
             { 
                 model.SelectedClient = value;
                 if(value != null)
-                    SelectedClientCopy = new Client { FirstName = value.FirstName, LastName = value.LastName, FatherName = value.FatherName, CarNumber = value.CarNumber, CarBrand = value.CarBrand };
+                    SelectedClientCopy = new Client { FirstName = value.FirstName, LastName = value.LastName, FatherName = value.FatherName, CarNumber = value.CarNumber, CarBrand = value.CarBrand, VisitLog = value.VisitLog };
                 NotifyPropertyChanged("SelectedClient");
                 NotifyPropertyChanged("SelectedClientCopy");
             }
@@ -49,7 +50,7 @@ namespace WpfApp14
                     model.SelectedClient = SelectedClient;
                     Pages.ChangePageTo(PageType.VisitList);
                 },
-                () => true);
+                () => SelectedClient != null);
             MarkDate = new MvvmCommand(
                 () => model.MarkDate(SelectedClient),
                 () => SelectedClient != null);

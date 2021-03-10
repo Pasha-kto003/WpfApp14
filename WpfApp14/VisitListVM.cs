@@ -20,10 +20,13 @@ namespace WpfApp14
 
         private void Model_SelectedClientChanged(object sender, EventArgs e)
         {
-            Title = $"История посещений клиента {model.SelectedClient.Name}";
-            NotifyPropertyChanged("Title");
-            Visits = new ObservableCollection<DateTime>(model.SelectedClient.VisitLog);
-            NotifyPropertyChanged("Visits");
+            if (model.SelectedClient != null)
+            {
+                Title = $"История посещений клиента {model.SelectedClient.Name}";
+                NotifyPropertyChanged("Title");
+                Visits = new ObservableCollection<DateTime>(model.SelectedClient.VisitLog);
+                NotifyPropertyChanged("Visits");
+            }
         }
     }
 }
